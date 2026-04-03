@@ -2,7 +2,7 @@ name: Stock Scanner
 
 on:
   schedule:
-    - cron: "*/5 12-13 * * 1-5"
+    - cron: "*/5 6-13 * * 1-5"
   workflow_dispatch:
 
 jobs:
