@@ -1,4 +1,3 @@
-@'
 import yfinance as yf
 import pandas as pd
 from datetime import datetime
@@ -59,4 +58,3 @@ def generate_dashboard():
 if __name__ == "__main__":
     generate_dashboard()
     webbrowser.open("file://" + os.path.abspath("dashboard.html"))
-'@ | Set-Content dashboard.py
