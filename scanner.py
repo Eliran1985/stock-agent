@@ -1,6 +1,7 @@
 import yfinance as yf
 import pandas as pd
 from datetime import datetime
+import pytz
 
 WATCHLIST = [
     "AAPL", "MSFT", "GOOGL", "AMZN", "NVDA", "META", "TSLA", "AMD",
@@ -39,15 +40,18 @@ def get_stock_data(ticker):
         return None
 
 def scan_stocks():
-    print(f"\nScanning started: {datetime.now().strftime('%H:%M:%S')}")
+    israel_tz = pytz.timezone("Asia/Jerusalem")
+    now = datetime.now(israel_tz)
+    print(f"\nScanning started: {now.strftime('%H:%M:%S')}")
     results = []
     for ticker in WATCHLIST:
         data = get_stock_data(ticker)
         if data is None:
             continue
-        if (data["pre_market_change"] > -50 and
-            data["volume_ratio"] > 0 and
-            data["market_cap_B"] >= 0.1):
+        if (data["pre_market_change"] > 3 and
+            data["volume_ratio"] > 175 and
+            data["market_cap_B"] >= 1 and
+            data["above_ma150"]):
             results.append(data)
             print(f"FOUND: {ticker}")
     return results

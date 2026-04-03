@@ -1,21 +1,16 @@
+@'
 import yfinance as yf
 import pandas as pd
 from datetime import datetime
+import pytz
 from scanner import scan_stocks, WATCHLIST, get_stock_data
-import json
+import webbrowser, os
 
 def generate_dashboard():
     results = scan_stocks()
-    
-    # נתונים לכל המניות ברשימה לצורך הצגה
-    all_data = []
-    for ticker in WATCHLIST:
-        data = get_stock_data(ticker)
-        if data:
-            all_data.append(data)
+    israel_tz = pytz.timezone("Asia/Jerusalem")
+    now = datetime.now(israel_tz).strftime("%d/%m/%Y %H:%M:%S")
 
-    now = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
-    
     matches_html = ""
     if results:
         for r in results:
@@ -51,7 +46,7 @@ def generate_dashboard():
 </head>
 <body>
     <h1>Stock Pre-Market Scanner</h1>
-    <p class="timestamp">Last scan: {now}</p>
+    <p class="timestamp">Last scan: {now} (Israel Time)</p>
     <h2>Matching Stocks</h2>
     {matches_html}
 </body>
@@ -63,5 +58,5 @@ def generate_dashboard():
 
 if __name__ == "__main__":
     generate_dashboard()
-    import webbrowser, os
     webbrowser.open("file://" + os.path.abspath("dashboard.html"))
+'@ | Set-Content dashboard.py
