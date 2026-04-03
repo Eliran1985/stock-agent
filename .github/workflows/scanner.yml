@@ -1,0 +1,34 @@
+name: Stock Scanner
+
+on:
+  schedule:
+    - cron: "*/5 12-13 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: pip install yfinance pandas requests
+
+      - name: Run scanner
+        run: python dashboard.py
+
+      - name: Deploy to GitHub Pages
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git add dashboard.html
+          git diff --staged --quiet || git commit -m "Update dashboard"
+          git push
