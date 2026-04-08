@@ -2,7 +2,8 @@ name: Stock Scanner
 
 on:
   schedule:
-    - cron: "*/5 8-13 * * 1-5"
+    - cron: "0 13 * * 1-5"
+    - cron: "0 14,15,16,17,18,19,20 * * 1-5"
   workflow_dispatch:
 
 jobs:
@@ -20,10 +21,10 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install yfinance pandas requests
+        run: pip install yfinance pandas requests plotly pytz numpy
 
       - name: Run scanner
-        run: python dashboard.py
+        run: python build_dashboard.py
 
       - name: Deploy to GitHub Pages
         run: |
