@@ -189,7 +189,7 @@ body {
             <p>US Market Scanner — Professional Analysis</p>
         </div>
     </div>
-    <div class="timestamp">Last updated: <span>17/11/2026 00:39:41 (Israel Time)</span></div>
+    <div class="timestamp">Last updated: <span>17/11/2026 01:16:12 (Israel Time)</span></div>
 </div>
 <div class="nav-tabs">
     <button class="nav-tab active" onclick="switchTab('sectors', this)">📂 Sectors</button>
@@ -2223,7 +2223,25 @@ body {
                     </div>
                 </div>
             </div>
-            <p class='no-data'>No signals found</p>
+            <div class="signal-card">
+        <div class="signal-header">
+            <span class="signal-ticker">NTRS</span>
+            <span class="signal-price">$175.45</span>
+            <span class="tag vol-tag">Vol: 70%</span>
+            <span class="tag cap-tag">$31.78B</span>
+            
+            <button class="chart-btn" onclick="toggleChart('chart_NTRS_reversals')">
+                📈 Chart
+            </button>
+        </div>
+        <div class="chart-container" id="chart_NTRS_reversals" style="display:none;">
+            <div id="chart_NTRS_reversals_plot" style="width:100%;height:420px;"></div>
+        </div>
+        <script>
+            window.__charts = window.__charts || {};
+            window.__charts['chart_NTRS_reversals'] = null;
+        </script>
+    </div>
         </div><div class="signal-section">
             <div class="signal-section-header">
                 <div class="signal-title-row">
@@ -2234,27 +2252,7 @@ body {
                     </div>
                 </div>
             </div>
-            <div class="signal-card">
-        <div class="signal-header">
-            <span class="signal-ticker">KMB</span>
-            <span class="signal-price">$111.34</span>
-            <span class="tag vol-tag">Vol: 130%</span>
-            <span class="tag cap-tag">$68.33B</span>
-            
-        <span class='tag res-tag'>R: $107.6</span>
-        <span class='tag date-tag'>📅 16/11/2026</span>
-            <button class="chart-btn" onclick="toggleChart('chart_KMB_breakouts')">
-                📈 Chart
-            </button>
-        </div>
-        <div class="chart-container" id="chart_KMB_breakouts" style="display:none;">
-            <div id="chart_KMB_breakouts_plot" style="width:100%;height:420px;"></div>
-        </div>
-        <script>
-            window.__charts = window.__charts || {};
-            window.__charts['chart_KMB_breakouts'] = null;
-        </script>
-    </div>
+            <p class='no-data'>No signals found</p>
         </div><div class="signal-section">
             <div class="signal-section-header">
                 <div class="signal-title-row">
